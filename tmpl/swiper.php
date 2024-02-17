@@ -15,7 +15,7 @@ use Joomla\CMS\Router\Route;
 use Joomla\Component\Tags\Site\Helper\RouteHelper;
 use Joomla\CMS\Layout\LayoutHelper;
 ?>
-<div class="mod-tagspopular swiper swiper-clider">
+<div class="mod-tagspopular swiper swiper-slider">
     <?php if (!count($list)) : ?>
         <div class="alert alert-info">
             <span class="icon-info-circle" aria-hidden="true"></span><span class="visually-hidden"><?php echo Text::_('INFO'); ?></span>

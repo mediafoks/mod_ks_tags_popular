@@ -1,4 +1,4 @@
-[![Version](https://flat.badgen.net/github/release/mediafoks/mod_ks_tags_popular/stabile?color=blue)]() [![JoomlaVersion](https://flat.badgen.net/badge/Joomla/5.0/orange)]() [![Type](https://flat.badgen.net/badge/type/module/yellow)]()
+[![Version](https://flat.badgen.net/github/release/mediafoks/mod_ks_tags_popular/blue)]() [![JoomlaVersion](https://flat.badgen.net/badge/Joomla/5.0/orange)]() [![Type](https://flat.badgen.net/badge/type/module/yellow)]()
 
 # KS Tags Popular Module
 

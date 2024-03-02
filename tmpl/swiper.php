@@ -14,6 +14,13 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\Component\Tags\Site\Helper\RouteHelper;
 use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Factory;
+
+// Подключаем Swiper
+$app = Factory::getApplication();
+$wa = $app->getDocument()->getWebAssetManager();
+$wa->useScript('swiper');
+// END Подключаем Swiper
 ?>
 <div class="mod-tagspopular swiper swiper-slider">
     <?php if (!count($list)) : ?>

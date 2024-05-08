@@ -22,7 +22,7 @@ use Joomla\Database\ParameterType;
 /**
  * Helper for mod_tags_popular
  *
- * @since  3.1
+ * @since  1.1.3
  */
 abstract class KsTagsPopularHelper
 {
@@ -33,11 +33,11 @@ abstract class KsTagsPopularHelper
      *
      * @return  mixed
      *
-     * @since   3.1
+     * @since   1.1.3
      */
     public static function getList(&$params)
     {
-        $db          = Factory::getDbo();
+        $db = Factory::getContainer()->get('DatabaseDriver');
         $user        = Factory::getUser();
         $groups      = $user->getAuthorisedViewLevels();
         $timeframe   = $params->get('timeframe', 'alltime');

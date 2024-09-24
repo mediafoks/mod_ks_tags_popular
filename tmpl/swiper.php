@@ -19,19 +19,20 @@ use Joomla\CMS\Factory;
 // Подключаем Swiper
 $app = Factory::getApplication();
 $wa = $app->getDocument()->getWebAssetManager();
-$wa->useScript('swiper');
+$wa->useScript('swiper-element')
+    ->useScript('swiper-init');
 // END Подключаем Swiper
 ?>
-<div class="mod-tagspopular swiper swiper-slider">
+<div class="mod-tagspopular">
     <?php if (!count($list)) : ?>
         <div class="alert alert-info">
             <span class="icon-info-circle" aria-hidden="true"></span><span class="visually-hidden"><?php echo Text::_('INFO'); ?></span>
             <?php echo Text::_('MOD_KS_TAGS_POPULAR_NO_ITEMS_FOUND'); ?>
         </div>
     <?php else : ?>
-        <ul class="tagspopular swiper-wrapper">
+        <swiper-container class="tagspopular swiper-tagspopular" init="false">
             <?php foreach ($list as $item) : ?>
-                <li class="tagspopular__item swiper-slide">
+                <swiper-slide class="tagspopular__item">
                     <?php $images = json_decode($item->images); ?>
                     <?php if (isset($images->image_intro) && !empty($images->image_intro)) : ?>
                         <a class="tagview" href="<?php echo Route::_(RouteHelper::getComponentTagRoute($item->tag_id . ':' . $item->alias, $item->language)); ?>">
@@ -53,8 +54,8 @@ $wa->useScript('swiper');
                             <span class="tag-count badge bg-info"><?php echo $item->count; ?></span>
                         <?php endif; ?>
                     <?php endif; ?>
-                </li>
+                </swiper-slide>
             <?php endforeach; ?>
-        </ul>
+        </swiper-container>
     <?php endif; ?>
 </div>

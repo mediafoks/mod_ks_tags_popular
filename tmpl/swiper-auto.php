@@ -29,7 +29,7 @@ $wa->useScript('swiper-element');
             <?php echo Text::_('MOD_KS_TAGS_POPULAR_NO_ITEMS_FOUND'); ?>
         </div>
     <?php else : ?>
-        <swiper-container class="tagspopular swiper-auto" slides-per-view="auto" space-between="8" loop="false" freeMode="true" speed="600" grab-cursor="true">
+        <swiper-container class="tagspopular swiper-auto" slides-per-view="auto" space-between="8" loop="false" free-mode="true" speed="600" grab-cursor="true">
             <?php foreach ($list as $item) : ?>
                 <swiper-slide class="tagspopular__item">
                     <?php $images = json_decode($item->images); ?>

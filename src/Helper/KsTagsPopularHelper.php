@@ -22,7 +22,7 @@ use Joomla\Database\ParameterType;
 /**
  * Helper for mod_tags_popular
  *
- * @since  2.1.1
+ * @since  2.1.2
  */
 abstract class KsTagsPopularHelper
 {
@@ -33,7 +33,7 @@ abstract class KsTagsPopularHelper
      *
      * @return  mixed
      *
-     * @since   2.1.1
+     * @since   2.1.2
      */
     public static function getList(&$params)
     {

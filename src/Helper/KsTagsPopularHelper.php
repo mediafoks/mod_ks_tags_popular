@@ -13,6 +13,8 @@ namespace Joomla\Module\KsTagsPopular\Site\Helper;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ContentHelper;
+use Joomla\Database\DatabaseAwareInterface;
+use Joomla\Database\DatabaseAwareTrait;
 use Joomla\Database\ParameterType;
 
 // phpcs:disable PSR1.Files.SideEffects
@@ -22,10 +24,12 @@ use Joomla\Database\ParameterType;
 /**
  * Helper for mod_tags_popular
  *
- * @since  2.1.2
+ * @since  3.1
  */
-abstract class KsTagsPopularHelper
+class KsTagsPopularHelper implements DatabaseAwareInterface
 {
+    use DatabaseAwareTrait;
+
     /**
      * Get list of popular tags
      *
@@ -33,12 +37,13 @@ abstract class KsTagsPopularHelper
      *
      * @return  mixed
      *
-     * @since   2.1.2
+     * @since   5.1.0
      */
-    public static function getList(&$params)
+    public function getTags(&$params)
     {
-        $db = Factory::getContainer()->get('DatabaseDriver');
-        $user        = Factory::getUser();
+        $db          = $this->getDatabase();
+        $app         = Factory::getApplication();
+        $user        = $app->getIdentity();
         $groups      = $user->getAuthorisedViewLevels();
         $timeframe   = $params->get('timeframe', 'alltime');
         $maximum     = (int) $params->get('maximum', 5);
@@ -185,9 +190,29 @@ abstract class KsTagsPopularHelper
             $results = $db->loadObjectList();
         } catch (\RuntimeException $e) {
             $results = [];
-            Factory::getApplication()->enqueueMessage($e->getMessage(), 'error');
+            $app->enqueueMessage($e->getMessage(), 'error');
         }
 
         return $results;
+    }
+
+    /**
+     * Get list of popular tags
+     *
+     * @param   \Joomla\Registry\Registry  &$params  module parameters
+     *
+     * @return  mixed
+     *
+     * @since   3.1
+     *
+     * @deprecated 5.1.0 will be removed in 7.0
+     *             Use the non-static method getTags
+     *             Example: Factory::getApplication()->bootModule('mod_tags_popular', 'site')
+     *                          ->getHelper('TagsPopularHelper')
+     *                          ->getTags($params)
+     */
+    public static function getList(&$params)
+    {
+        return (new self())->getTags($params);
     }
 }
